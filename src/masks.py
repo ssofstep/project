@@ -9,4 +9,3 @@ def masks_card(number_card: str) -> str:
 def masks_account(number_account: str) -> str:
     """Функция, которая получает номер счета и возвращает маску этого счета"""
     return "**" + number_account[-4:]
-

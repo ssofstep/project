@@ -1,4 +1,4 @@
-from src.widget import masks_card_account, data
+from src.widget import data, masks_card_account
 
 print(masks_card_account("Maestro 1596837868705199"))
 print(masks_card_account("Счет 35383033474447895560"))
