@@ -91,6 +91,16 @@ print(next(obj_1))
 print(next(obj_1))
 print(next(obj_1))
 
+def transaction_descriptions(transactions: list) -> Iterator:
+    """Функция, которая принимает список словарей и возвращает описание каждой операции по очереди"""
+    for item_2 in transactions:
+        yield item_2["description"]
 
+
+obj_2 = transaction_descriptions(transactions)
+print(next(obj_2))
+print(next(obj_2))
+print(next(obj_2))
+print(next(obj_2))
 
 
