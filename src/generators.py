@@ -80,16 +80,19 @@ transactions = (
     ]
 )
 
+
 def filter_by_currency(transactions: list, name: str) -> Iterator:
     """Функция, которая принимает список словарей и возвращает итератор с заданной валютой"""
     for item_1 in transactions:
         if item_1["operationAmount"]["currency"]["name"] == name:
             yield item_1
 
+
 obj_1 = filter_by_currency(transactions, "USD")
 print(next(obj_1))
 print(next(obj_1))
 print(next(obj_1))
+
 
 def transaction_descriptions(transactions: list) -> Iterator:
     """Функция, которая принимает список словарей и возвращает описание каждой операции по очереди"""
@@ -103,4 +106,18 @@ print(next(obj_2))
 print(next(obj_2))
 print(next(obj_2))
 
+
+def card_number_generator(start: int, end: int) -> Iterator:
+    num = 1000_0000_0000_0000
+    for i in range(start, end+1):
+        num_str = str(num) + str(i)
+        new_num = "0" + num_str[1:][:3] + " " + num_str[4:8] + " " + num_str[8:12] + " " + num_str[-4:]
+        yield new_num
+
+obj_3 = card_number_generator(1, 5)
+print(next(obj_3))
+print(next(obj_3))
+print(next(obj_3))
+print(next(obj_3))
+print(next(obj_3))
 
