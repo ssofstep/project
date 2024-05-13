@@ -120,3 +120,25 @@
 2024-05-08 19:42:52 sum_wrong_filename error: TypeError Inputs: (), {}
 2024-05-08 19:52:51 sum_correct_filename ok
 2024-05-08 19:52:51 sum_wrong_filename error: TypeError Inputs: (), {}
+2024-05-13 11:51:19 sum_correct_filename ok
+2024-05-13 11:51:19 sum_wrong_filename error: TypeError Inputs: (), {}
+2024-05-13 13:13:18 sum_correct_filename ok
+2024-05-13 13:13:18 sum_wrong_filename error: TypeError Inputs: (), {}
+2024-05-13 13:14:32 sum_correct_filename ok
+2024-05-13 13:14:32 sum_wrong_filename error: TypeError Inputs: (), {}
+2024-05-13 13:20:02 sum_correct_filename ok
+2024-05-13 13:20:02 sum_wrong_filename error: TypeError Inputs: (), {}
+2024-05-13 19:11:05 sum_correct_filename ok
+2024-05-13 19:11:05 sum_wrong_filename error: TypeError Inputs: (), {}
+2024-05-13 19:11:10 sum_correct_filename ok
+2024-05-13 19:11:10 sum_wrong_filename error: TypeError Inputs: (), {}
+2024-05-13 19:11:44 sum_correct_filename ok
+2024-05-13 19:11:44 sum_wrong_filename error: TypeError Inputs: (), {}
+2024-05-13 19:15:09 sum_correct_filename ok
+2024-05-13 19:15:09 sum_wrong_filename error: TypeError Inputs: (), {}
+2024-05-13 19:20:08 sum_correct_filename ok
+2024-05-13 19:20:08 sum_wrong_filename error: TypeError Inputs: (), {}
+2024-05-13 19:20:50 sum_correct_filename ok
+2024-05-13 19:20:50 sum_wrong_filename error: TypeError Inputs: (), {}
+2024-05-13 19:28:23 sum_correct_filename ok
+2024-05-13 19:28:23 sum_wrong_filename error: TypeError Inputs: (), {}
