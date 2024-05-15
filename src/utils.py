@@ -1,7 +1,9 @@
 import json
+import os
 from typing import Any
 
 import requests
+from dotenv import load_dotenv
 
 
 def finance_transactions(file_operations: str) -> Any:
@@ -17,24 +19,25 @@ def finance_transactions(file_operations: str) -> Any:
         return []
 
 
-# print(finance_transactions("C:\\Users\Student Free\PycharmProjects\project_skypro\data\operations.json"))
+load_dotenv()
+api_token = os.getenv("API_KEY")
 
 
 def sum_transactions(transaction: dict) -> float:
     """Функция, которая принимает на вход транзакцию и возвращает сумму транзакции в рублях"""
     currency = transaction["operationAmount"]["currency"]["code"]
     amount = transaction["operationAmount"]["amount"]
-    headers = {"apikey": "e8d60e51fca9a55ec2011126"}
+    headers = {"apikey": api_token}
     payload: dict[Any, Any] = {}
     if currency == "USD":
-        url_usd = "https://v6.exchangerate-api.com/v6/e8d60e51fca9a55ec2011126/latest/USD"
+        url_usd = f"https://v6.exchangerate-api.com/v6/{api_token}/latest/USD"
         response = requests.get(url_usd, headers=headers, data=payload)
         currency_json_usd = response.json()
         usd = currency_json_usd["conversion_rates"]["RUB"]
         rub_amount: float = usd * float(amount)
         return rub_amount
     elif currency == "EUR":
-        url_eur = "https://v6.exchangerate-api.com/v6/e8d60e51fca9a55ec2011126/latest/EUR"
+        url_eur = f"https://v6.exchangerate-api.com/v6/{api_token}/latest/EUR"
         response = requests.get(url_eur, headers=headers, data=payload)
         currency_json_eur = response.json()
         eur = currency_json_eur["conversion_rates"]["RUB"]
