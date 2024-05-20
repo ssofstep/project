@@ -5,6 +5,10 @@ from typing import Any
 import requests
 from dotenv import load_dotenv
 
+from src.logger import setup_logger
+
+logger = setup_logger("utils", "utils.log")
+
 
 def finance_transactions(file_operations: str) -> Any:
     """Функция, которая принимает на вход путь до JSON-файла и возвращает список словарей с данными о
@@ -12,10 +16,13 @@ def finance_transactions(file_operations: str) -> Any:
     try:
         with open(file_operations, "r", encoding="utf-8") as file:
             data = json.load(file)
+            logger.info("load json file without mistakes")
             return data
     except FileNotFoundError:
+        logger.info("find FileNotFoundError")
         return []
     except json.JSONDecodeError:
+        logger.info("find json.JSONDecodeError")
         return []
 
 
@@ -34,14 +41,19 @@ def sum_transactions(transaction: dict) -> float:
         response = requests.get(url_usd, headers=headers, data=payload)
         currency_json_usd = response.json()
         usd = currency_json_usd["conversion_rates"]["RUB"]
-        rub_amount: float = usd * float(amount)
-        return rub_amount
+        logger.info(f"currency rub {usd}")
+        rub_amount = usd * float(amount)
+        logger.info(f"amount transaction {rub_amount}")
+        return float(rub_amount)
     elif currency == "EUR":
         url_eur = f"https://v6.exchangerate-api.com/v6/{api_token}/latest/EUR"
         response = requests.get(url_eur, headers=headers, data=payload)
         currency_json_eur = response.json()
         eur = currency_json_eur["conversion_rates"]["RUB"]
+        logger.info(f"currency rub {eur}")
         rub_amount = eur * float(amount)
-        return rub_amount
+        logger.info(f"amount transaction {rub_amount}")
+        return float(rub_amount)
     else:
+        logger.info(f"amount transaction {amount}")
         return float(amount)
