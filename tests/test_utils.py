@@ -4,8 +4,9 @@ from typing import Any
 from unittest.mock import Mock, patch
 
 from dotenv import load_dotenv
+from pandas import DataFrame
 
-from src.utils import finance_transactions, sum_transactions
+from src.utils import finance_transactions, read_csv_file, read_xlsx_file, sum_transactions
 
 
 @patch("builtins.open")
@@ -106,3 +107,63 @@ def test_get_currency_info_rub() -> None:
             "to": "Счет 64686473678894779589",
         }
     )
+
+
+@patch("pandas.read_csv")
+def test_read_csv_file(mock_open: Mock) -> None:
+    mock_open.return_value = DataFrame(
+        {
+            "id": [650703.0],
+            "state": ["EXECUTED"],
+            "date": ["2023-09-05T11:30:32Z"],
+            "amount": [16210.0],
+            "currency_name": ["Sol"],
+            "currency_code": ["PEN"],
+            "from": ["Счет 58803664561298323391"],
+            "to": ["Счет 39745660563456619397"],
+            "description": ["Перевод организации"],
+        }
+    )
+    assert read_csv_file(os.path.join("..", "data", "transactions.csv")) == [
+        {
+            "id": 650703.0,
+            "state": "EXECUTED",
+            "date": "2023-09-05T11:30:32Z",
+            "amount": 16210.0,
+            "currency_name": "Sol",
+            "currency_code": "PEN",
+            "from": "Счет 58803664561298323391",
+            "to": "Счет 39745660563456619397",
+            "description": "Перевод организации",
+        }
+    ]
+
+
+@patch("pandas.read_excel")
+def test_read_xlsx_file(mock_open: Mock) -> None:
+    mock_open.return_value = DataFrame(
+        {
+            "id": [650703.0],
+            "state": ["EXECUTED"],
+            "date": ["2023-09-05T11:30:32Z"],
+            "amount": [16210.0],
+            "currency_name": ["Sol"],
+            "currency_code": ["PEN"],
+            "from": ["Счет 58803664561298323391"],
+            "to": ["Счет 39745660563456619397"],
+            "description": ["Перевод организации"],
+        }
+    )
+    assert read_xlsx_file(os.path.join("..", "data", "transactions_excel")) == [
+        {
+            "id": 650703.0,
+            "state": "EXECUTED",
+            "date": "2023-09-05T11:30:32Z",
+            "amount": 16210.0,
+            "currency_name": "Sol",
+            "currency_code": "PEN",
+            "from": "Счет 58803664561298323391",
+            "to": "Счет 39745660563456619397",
+            "description": "Перевод организации",
+        }
+    ]

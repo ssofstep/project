@@ -2,6 +2,7 @@ import json
 import os
 from typing import Any
 
+import pandas as pd
 import requests
 from dotenv import load_dotenv
 
@@ -57,3 +58,17 @@ def sum_transactions(transaction: dict) -> float:
     else:
         logger.info(f"amount transaction {amount}")
         return float(amount)
+
+
+def read_csv_file(path: str) -> list:
+    """Функция, которая считывает финансовые операции с CSV-файла"""
+    csv_file = pd.read_csv(path, sep=";")
+    csv_dict = csv_file.to_dict(orient="records")
+    return csv_dict
+
+
+def read_xlsx_file(path: str) -> list:
+    """Функция, которая считывает финансовые операции с XLSX-файла"""
+    xlsx_file = pd.read_excel(path)
+    xlsx_dict = xlsx_file.to_dict(orient="records")
+    return xlsx_dict

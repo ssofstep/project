@@ -10,6 +10,8 @@ python = "^3.10"
 stubs = "^1.0.0"
 requests = "^2.31.0"
 python-dotenv = "^1.0.1"
+pandas = "^2.2.2"
+pandas-stubs = "^2.2.2.240514"
 
 
 [tool.poetry.group.lint.dependencies]
