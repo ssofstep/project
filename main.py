@@ -22,14 +22,19 @@ def main():
                 user_sort = input().lower()
                 if user_sort == "да":
                     print("Отсортировать по возрастанию или по убыванию?")
-                    user_reverse = input()
-                    pattern = re.compile(r'возрастан')
-                    user_reverse_pattern = re.findall(pattern, user_reverse)
-                    list_sort = sort_dict_by_date(list_status, user_reverse_pattern)
-                    print(list_sort)
-                # elif user_sort == "нет":
-                #
-                # break
+                    user_reverse = input().lower()
+                    if "возрастани" in user_reverse:
+                        list_sort_true = sort_dict_by_date(list_status, True)
+                        print("Выводить только рублевые тразакции? Да/Нет")
+
+                    elif "убывани" in user_reverse:
+                        list_sort_false = sort_dict_by_date(list_status, False)
+                        print("Выводить только рублевые тразакции? Да/Нет")
+                    # pattern = re.compile(r'возрастан')
+                    # user_reverse_pattern = re.findall(pattern, user_reverse)
+                elif user_sort == "нет":
+
+                break
             else:
                 print(f"Статус операции {user_status} недоступен.")
 
