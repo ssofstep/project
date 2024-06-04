@@ -2,7 +2,7 @@ def filter_dict_by_state(change_users_list: list, state: str = "EXECUTED") -> li
     """Функция, которая принимает список словарей и возвращает новый список, у которых ключ state"""
     new_users_list = []
     for i in change_users_list:
-        if i["state"] == state:
+        if i.get("state") == state:
             new_users_list.append(i)
 
     return new_users_list
