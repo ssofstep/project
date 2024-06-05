@@ -41,7 +41,7 @@ def sum_transactions(transaction: dict) -> float:
         url_usd = f"https://v6.exchangerate-api.com/v6/{api_token}/latest/USD"
         response = requests.get(url_usd, headers=headers, data=payload)
         currency_json_usd = response.json()
-        usd = currency_json_usd["conversion_rates"]["RUB"]
+        usd = currency_json_usd.get["conversion_rates"]["RUB"]
         logger.info(f"currency rub {usd}")
         rub_amount = usd * float(amount)
         logger.info(f"amount transaction {rub_amount}")

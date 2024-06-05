@@ -61,6 +61,7 @@ def main() -> None:
                         for i in list_transactions:
                             if i["operationAmount"]["currency"]["code"] == "RUB":
                                 list_currency.append(i)
+
             else:
                 list_currency = list_transactions
 
@@ -71,7 +72,7 @@ def main() -> None:
                 print("Введите строку поиска в описании")
                 user_search_line = input().lower()
                 list_currency = suitable_list(list_currency, user_search_line)
-
+                print(list_currency)
             print("Распечатываю итоговый список транзакций...")
 
             if len(list_currency) != 0:
@@ -79,9 +80,11 @@ def main() -> None:
                 for i in list_currency:
                     date = i["date"]
                     description = i["description"]
-                    account_from = i["from"].get()
+                    account_from = i.get("from", None)
                     account_to = i["to"]
-                    print(f'{data(date)} {description} \n{masks_card_account(account_from)} -> {masks_card_account()}')
+                    print(f'{data(date)} {description} ',
+                          f'\n{masks_card_account(account_from)} -> {masks_card_account(account_to)}',
+                          f'\nСумма: {sum_transactions(i)} руб.')
 
             else:
                 print("Не найдено ни одной транзакции подходящей под ваши условия фильтрации")
